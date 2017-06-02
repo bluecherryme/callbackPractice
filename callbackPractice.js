@@ -23,18 +23,26 @@ and what you should write is the sayHi function that makes the code above work,
 // 1. Write a function called first that returns the first item of the array using a callback function
 
   // Code Here
-
+function first(arr, callback){
+    callback(arr[0]);
+}
   
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
+
 first(names, function(firstName){
   console.log('The first name in names is ' + firstName)
 });
 
 
 
+
+
 // 2. Write a function called last which returns the last item of the array using a callback function.
 
   //Code Here
+function last(arr,callback){
+    callback(arr[arr.length-1])
+}
 
 last(names, function(lastName){
   console.log('The last name in names is ' + lastName);
@@ -45,7 +53,9 @@ last(names, function(lastName){
 // 3. Write a function called multiply that multiplies two numbers using a callback function.
 
   //Code Here
-
+function multiply(a, b, callback){
+    callback(a*b);
+}
 
 multiply(4, 3, function(answer){
   console.log('The answer is ' + answer); //should console.log 12
@@ -57,6 +67,9 @@ multiply(4, 3, function(answer){
 // If it does, return true using the callback, if not return false.
 
   //Code Here 
+function contains(arr, name, callback){
+    callback(arr.indexOf(name)>-1)
+}
 
 contains(names, 'Colt', function(result){
   if(result === true){
@@ -72,6 +85,15 @@ contains(names, 'Colt', function(result){
 // the callback function with the array of unique names.
 
     //Code Here
+function uniq(arr, callback){
+    var duplArr = [];
+    for (let i of arr){
+        if (duplArr.indexOf(i)==-1){
+            duplArr.push(i);
+        }
+    }
+    callback(duplArr);
+}
 
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
@@ -82,6 +104,11 @@ uniq(names, function(uniqArr){
 // function to return the indices and item.
 
     //Code Here 
+function each(arr,callback){
+    for (let i of arr){
+        callback(i, arr.indexOf(i))
+    }
+}
 
 each(names, function(item, indice){
   console.log('The item in the ' + indice + ' position is ' + item)
@@ -93,6 +120,14 @@ each(names, function(item, indice){
 // and returns that user.
 
  //Code Here
+
+function getUserById(users,ID,callback){
+    for (let i of users){
+        if (i['id'] == ID){
+            callback(i);
+        }
+    }
+}
 
 var users = [
   {
